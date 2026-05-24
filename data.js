@@ -66,11 +66,6 @@ const SF_BRACKET = [
 
 const FINAL_BRACKET = [{ id: 'FINAL', from: ['SF_1', 'SF_2'] }];
 
-const AVATAR_COLORS = [
-  '#f59e0b','#10b981','#3b82f6','#ec4899','#8b5cf6',
-  '#ef4444','#14b8a6','#f97316','#06b6d4','#84cc16',
-];
-
 // Win probability in % (top 15 countries have real values; others share remainder)
 const TEAMS = {
   ARG: {
