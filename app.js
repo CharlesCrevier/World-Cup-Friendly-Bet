@@ -123,13 +123,12 @@ function loginAsUser(userId) {
   showMainApp();
 }
 
-document.getElementById('register-form').addEventListener('submit', function(e) {
-  e.preventDefault();
+function handleRegister(e) {
+  if (e) e.preventDefault();
   const nameInput = document.getElementById('register-name');
-  const name = nameInput.value.trim();
+  const name = (nameInput ? nameInput.value : '').trim();
   if (!name) return;
 
-  // Check if name already exists
   const existing = allUsers.find(u => u.name.toLowerCase() === name.toLowerCase());
   if (existing) {
     loginAsUser(existing.id);
@@ -140,7 +139,7 @@ document.getElementById('register-form').addEventListener('submit', function(e) 
   allUsers.push(currentUser);
   saveStorage();
   showMainApp();
-});
+}
 
 // ============================================================
 // Navigation
@@ -973,23 +972,22 @@ function getOrdSuffix(n) {
   return s[(v-20)%10] || s[v] || s[0];
 }
 
-// Close modal on overlay click
-document.getElementById('team-modal-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeTeamModal();
-});
+// Wire up event listeners once the DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('team-modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeTeamModal();
+  });
 
-// Keyboard shortcuts
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeTeamModal();
-});
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeTeamModal();
+  });
 
-// Teams search input
-document.getElementById('teams-search-input').addEventListener('input', function() {
-  teamsSearch = this.value;
-  renderTeamGrid();
-});
+  document.getElementById('teams-search-input').addEventListener('input', function() {
+    teamsSearch = this.value;
+    renderTeamGrid();
+  });
 
-// Teams sort
-document.getElementById('teams-sort').addEventListener('change', function() {
-  setTeamsSort(this.value);
+  document.getElementById('teams-sort').addEventListener('change', function() {
+    setTeamsSort(this.value);
+  });
 });

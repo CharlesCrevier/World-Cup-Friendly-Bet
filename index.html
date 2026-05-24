@@ -19,12 +19,12 @@
     <p class="login-subtitle">Friendly Predictions & Bracket Challenge</p>
     <p class="login-org">INTERNATIONAL TRAINING CENTRE OF THE ILO</p>
 
-    <form id="register-form" class="login-form">
+    <form id="register-form" class="login-form" onsubmit="handleRegister(event)">
       <div class="form-group">
         <label class="form-label" for="register-name">Enter your name to join</label>
-        <input class="form-input" type="text" id="register-name" placeholder="Your name…" maxlength="40" autocomplete="off" required>
+        <input class="form-input" type="text" id="register-name" placeholder="Your name…" maxlength="40" autocomplete="off">
       </div>
-      <button class="btn btn-primary" type="submit">
+      <button class="btn btn-primary" type="submit" onclick="handleRegister(event)">
         ⚽ &nbsp; Join the Predictions
       </button>
     </form>
