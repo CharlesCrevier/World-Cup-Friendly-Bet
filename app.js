@@ -4,6 +4,13 @@
 
 const STORAGE_KEY = 'itcilo_wc2026_v2';
 
+function flagImg(teamId, size) {
+  const code = FLAG_CODES[teamId];
+  if (!code) return '';
+  const w = size === 'lg' ? 40 : size === 'md' ? 32 : 20;
+  return `<img class="flag-img flag-${size||'sm'}" src="https://flagcdn.com/w${w}/${code}.png" alt="${teamId}" loading="lazy">`;
+}
+
 // ============================================================
 // State
 // ============================================================
@@ -213,7 +220,7 @@ function renderExistingUsers() {
       </div>
       <div>
         <div class="existing-user-name">${escHtml(u.name)}</div>
-        <div class="existing-user-pick">${u.predictions.champion ? '🏆 ' + TEAMS[u.predictions.champion].flag + ' ' + TEAMS[u.predictions.champion].name : 'No champion picked yet'}</div>
+        <div class="existing-user-pick">${u.predictions.champion ? '🏆 ' + flagImg(u.predictions.champion) + ' ' + TEAMS[u.predictions.champion].name : 'No champion picked yet'}</div>
       </div>
     </button>
   `).join('');
@@ -292,7 +299,7 @@ function renderHome() {
     const team = TEAMS[picks.champion];
     pickSection.innerHTML = `
       <div class="pick-display">
-        <span class="pick-flag">${team.flag}</span>
+        <span class="pick-flag">${flagImg(team.id)}</span>
         <div class="pick-info">
           <h3>${escHtml(team.name)}</h3>
           <div class="conf">${team.confederation} · FIFA Rank #${team.fifaRank}</div>
@@ -376,7 +383,7 @@ function renderTopPicks() {
     return `
       <div style="display:flex;align-items:center;gap:0.75rem;padding:0.625rem 0;border-bottom:1px solid var(--border)">
         <span style="font-size:0.8rem;color:var(--text-dim);min-width:20px">${i+1}.</span>
-        <span style="font-size:1.5rem">${team.flag}</span>
+        <span class="flag-img-wrap">${flagImg(team.id, 'md')}</span>
         <div style="flex:1">
           <div style="font-size:0.875rem;font-weight:600">${team.name}</div>
           <div style="height:4px;background:var(--bg);border-radius:2px;margin-top:0.3rem">
@@ -449,7 +456,7 @@ function renderTeamGrid() {
     return `
       <div class="team-card${isPick ? ' is-pick' : ''}" onclick="openTeamDetail('${team.id}')">
         ${isPick ? '<div class="team-card-pick-badge">🏆 MY PICK</div>' : ''}
-        <span class="team-flag">${team.flag}</span>
+        <span class="team-flag">${flagImg(team.id)}</span>
         <div class="team-card-name">${escHtml(team.name)}</div>
         <div class="team-card-conf">${team.confederation}</div>
         <div class="team-prob-bar">
@@ -483,7 +490,7 @@ function openTeamDetail(teamId) {
   const isPick = currentUser.predictions.champion === teamId;
   const probFill = Math.min(100, team.probability * 5);
 
-  document.getElementById('modal-flag').textContent = team.flag;
+  document.getElementById('modal-flag').innerHTML = flagImg(team.id, 'lg');
   document.getElementById('modal-team-name').textContent = team.name;
   document.getElementById('modal-team-sub').textContent = `${team.confederation} · FIFA Rank #${team.fifaRank}`;
 
@@ -521,7 +528,7 @@ function openTeamDetail(teamId) {
       <div style="display:flex;flex-direction:column;gap:0.4rem">
         ${groupTeams.map(t => `
           <div style="display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0.75rem;background:${t.id === teamId ? 'rgba(245,158,11,0.1)' : 'var(--surface-2)'};border-radius:8px;${t.id === teamId ? 'border:1px solid rgba(245,158,11,0.3)' : ''}">
-            <span style="font-size:1.25rem">${t.flag}</span>
+            <span>${flagImg(t.id)}</span>
             <span style="font-size:0.875rem;font-weight:${t.id === teamId ? '700' : '500'}">${escHtml(t.name)}</span>
             <span style="margin-left:auto;font-size:0.75rem;color:var(--text-dim)">${t.probability}%</span>
           </div>
@@ -557,7 +564,7 @@ function pickChampionFromModal() {
   if (activeTab === 'teams') renderTeamGrid();
   if (activeTab === 'home') renderHome();
 
-  showToast(`${TEAMS[openTeamModal].flag} ${TEAMS[openTeamModal].name} set as your champion pick!`);
+  showToast(`${TEAMS[openTeamModal].name} set as your champion pick!`);
 }
 
 // ============================================================
@@ -673,7 +680,7 @@ function renderGroupTeamRow(groupId, teamId, groupPicks) {
   }
   return `
     <div class="group-team-row ${rankClass}" onclick="pickGroupTeam('${groupId}','${teamId}')">
-      <span class="group-team-flag">${team.flag}</span>
+      <span class="group-team-flag">${flagImg(team.id)}</span>
       <span class="group-team-name">${escHtml(team.name)}</span>
       <span class="group-team-prob">${team.probability}%</span>
       ${rankBadge}
@@ -770,7 +777,7 @@ function renderMatchCard(stageKey, matchId, team1Id, team2Id, winnerId, slots, t
     const team = TEAMS[teamId];
     return `
       <div class="match-team${isWinner ? ' winner' : ''}" onclick="pickMatchWinner('${stageKey}','${matchId}','${teamId}')">
-        <span class="match-team-flag">${team.flag}</span>
+        <span class="match-team-flag">${flagImg(team.id)}</span>
         <span class="match-team-name">${escHtml(team.name)}</span>
         ${isWinner ? '<span class="match-winner-check">✓</span>' : ''}
       </div>
@@ -843,7 +850,7 @@ function renderFinalStage() {
       <div class="pick-display${isWinner ? '' : ''}"
            style="${isWinner ? 'background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(249,115,22,0.1));border-color:rgba(245,158,11,0.5)' : ''};cursor:pointer"
            onclick="pickFinalWinner('${teamId}')">
-        <span class="pick-flag">${team.flag}</span>
+        <span class="pick-flag">${flagImg(team.id)}</span>
         <div class="pick-info">
           <h3>${escHtml(team.name)}</h3>
           <div class="conf">${team.confederation}</div>
@@ -861,7 +868,7 @@ function renderFinalStage() {
         <p class="bracket-desc">The ultimate match. Pick your World Cup 2026 Champion.</p>
       </div>
     </div>
-    ${finalWinner ? `<div class="alert alert-success"><span class="alert-icon">🏆</span>You picked <strong>${TEAMS[finalWinner].flag} ${TEAMS[finalWinner].name}</strong> as your World Cup Champion!</div>` : ''}
+    ${finalWinner ? `<div class="alert alert-success"><span class="alert-icon">🏆</span>You picked <strong>${flagImg(finalWinner)} ${TEAMS[finalWinner].name}</strong> as your World Cup Champion!</div>` : ''}
     <div style="display:flex;gap:0.75rem;margin-bottom:1.5rem">
       <button class="btn btn-ghost btn-sm" onclick="showStage('sf')">← Back to Semi-Finals</button>
     </div>
@@ -937,7 +944,7 @@ function renderThirdSlotsStage() {
 function renderThirdSlotCard(slot, label, candidates, selected, otherTeam, otherSlot, matchId) {
   const slotNum = slot.replace('3rd-', '');
   const vsHtml = otherTeam
-    ? `<div class="third-slot-vs">Will face <strong>${TEAMS[otherTeam].flag} ${TEAMS[otherTeam].name}</strong> in ${matchId.replace('_',' ')}</div>`
+    ? `<div class="third-slot-vs">Will face <strong>${flagImg(otherTeam)} ${TEAMS[otherTeam].name}</strong>in ${matchId.replace('_',' ')}</div>`
     : `<div class="third-slot-vs">Opponent (${otherSlot}) — fill groups first</div>`;
 
   return `
@@ -948,7 +955,7 @@ function renderThirdSlotCard(slot, label, candidates, selected, otherTeam, other
           <span class="third-slot-label">${label}</span>
         </div>
         ${selected
-          ? `<span class="badge badge-green">${TEAMS[selected].flag} ${TEAMS[selected].name} ✓</span>`
+          ? `<span class="badge badge-green">${flagImg(selected)} ${TEAMS[selected].name} ✓</span>`
           : '<span class="badge">Not picked</span>'}
       </div>
       ${vsHtml}
@@ -960,7 +967,7 @@ function renderThirdSlotCard(slot, label, candidates, selected, otherTeam, other
               const isSel = selected === teamId;
               return `
                 <button class="third-candidate${isSel ? ' selected' : ''}" onclick="pickThirdSlot('${slot}','${teamId}')">
-                  <span class="tc-flag">${team.flag}</span>
+                  <span class="tc-flag">${flagImg(team.id)}</span>
                   <div class="tc-info">
                     <div class="tc-name">${escHtml(team.name)}</div>
                     <div class="tc-group">Group ${group} · 3rd place</div>
@@ -1016,7 +1023,7 @@ function renderThirdPlaceStage() {
     return `
       <div class="pick-display" style="${isWinner ? 'border-color:var(--accent-green);background:rgba(46,125,50,0.08)' : ''};cursor:pointer"
            onclick="pickThirdPlaceWinner('${teamId}')">
-        <span class="pick-flag">${team.flag}</span>
+        <span class="pick-flag">${flagImg(team.id)}</span>
         <div class="pick-info">
           <h3>${escHtml(team.name)}</h3>
           <div class="conf">${team.confederation}</div>
@@ -1034,7 +1041,7 @@ function renderThirdPlaceStage() {
         <p class="bracket-desc">The two losing semi-finalists compete for bronze. Pick which team finishes third.</p>
       </div>
     </div>
-    ${thirdWinner ? `<div class="alert alert-success"><span class="alert-icon">🥉</span>You picked <strong>${TEAMS[thirdWinner].flag} ${TEAMS[thirdWinner].name}</strong> to finish 3rd!</div>` : ''}
+    ${thirdWinner ? `<div class="alert alert-success"><span class="alert-icon">🥉</span>You picked <strong>${flagImg(thirdWinner)} ${TEAMS[thirdWinner].name}</strong> to finish 3rd!</div>` : ''}
     <div style="display:flex;gap:0.75rem;margin-bottom:1.5rem">
       <button class="btn btn-ghost btn-sm" onclick="showStage('sf')">← Back to Semi-Finals</button>
       <button class="btn btn-secondary btn-sm" onclick="showStage('final')">Continue to Final →</button>
@@ -1064,7 +1071,7 @@ function pickFinalWinner(teamId) {
   showStage('final');
   if (activeTab === 'home') renderHome();
   if (teamId && currentUser.predictions.final === teamId) {
-    showToast(`${TEAMS[teamId].flag} ${TEAMS[teamId].name} is your World Cup Champion!`);
+    showToast(`${TEAMS[teamId].name} is your World Cup Champion! 🏆`);
   }
 }
 
@@ -1135,7 +1142,7 @@ function renderLeaderboard() {
           <span class="lb-name">${escHtml(u.name)}${isCurrent ? '<span class="lb-you-tag">YOU</span>' : ''}</span>
         </div>
         <div class="lb-champion">
-          ${champion ? `<span class="lb-champion-flag">${champion.flag}</span><span class="lb-champion-name">${escHtml(champion.name)}</span>` : '<span class="no-pick-text-sm">No pick yet</span>'}
+          ${champion ? `<span class="lb-champion-flag">${flagImg(champion.id)}</span><span class="lb-champion-name">${escHtml(champion.name)}</span>` : '<span class="no-pick-text-sm">No pick yet</span>'}
         </div>
         <div class="lb-score-col">
           <div class="lb-score">—</div>

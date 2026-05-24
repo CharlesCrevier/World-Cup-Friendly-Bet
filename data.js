@@ -7,6 +7,21 @@
 const CLOUD_BIN_ID  = '6a12eb386877513b27c4f44a';
 const CLOUD_API_KEY = '$2a$10$FfjD8wJ8SR0.F4RbgG4rIumA8oCoU0HCuP6Gp8aXrydIY4vgNI.iy';
 
+const FLAG_CODES = {
+  MEX:'mx', KOR:'kr', RSA:'za', CZE:'cz',
+  CAN:'ca', BIH:'ba', QAT:'qa', CHE:'ch',
+  BRA:'br', MAR:'ma', SCO:'gb-sct', HAI:'ht',
+  USA:'us', PAR:'py', AUS:'au', TUR:'tr',
+  GER:'de', CUW:'cw', CIV:'ci', ECU:'ec',
+  NED:'nl', JPN:'jp', SWE:'se', TUN:'tn',
+  BEL:'be', IRN:'ir', EGY:'eg', NZL:'nz',
+  ESP:'es', URU:'uy', KSA:'sa', CPV:'cv',
+  FRA:'fr', SEN:'sn', NOR:'no', IRQ:'iq',
+  ARG:'ar', AUT:'at', ALG:'dz', JOR:'jo',
+  POR:'pt', COD:'cd', UZB:'uz', COL:'co',
+  ENG:'gb-eng', CRO:'hr', PAN:'pa', GHA:'gh',
+};
+
 const GROUPS = {
   A: ['MEX', 'KOR', 'RSA', 'CZE'],
   B: ['CAN', 'BIH', 'QAT', 'CHE'],
