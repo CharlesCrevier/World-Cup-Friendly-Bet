@@ -2,7 +2,7 @@
    ITCILO World Cup 2026 - Application Logic
    ============================================================ */
 
-const STORAGE_KEY = 'itcilo_wc2026_v1';
+const STORAGE_KEY = 'itcilo_wc2026_v2';
 
 // ============================================================
 // State
@@ -622,7 +622,7 @@ function renderGroupsStage() {
     <div class="bracket-hero">
       <div>
         <h2 class="bracket-title">Group Stage Predictions</h2>
-        <p class="bracket-desc">Click teams to select who you think will finish 1st (gold) and 2nd (green) in each group.<br>The top 2 from each group advance directly to the Round of 32. The best 8 third-placed teams also qualify.</p>
+        <p class="bracket-desc">In each group, click a team once to pick them <strong>1st</strong>, then click another team to pick them <strong>2nd</strong>. Click a picked team again to remove them. The top 2 advance to the Round of 32; the best 8 third-placed teams also qualify.</p>
       </div>
       <div class="bracket-progress-rings">
         <div class="progress-ring-item">
@@ -648,7 +648,7 @@ function renderGroupCard(groupId, teamIds, groupPicks) {
     <div class="group-card${complete ? ' complete' : ''}" id="group-card-${groupId}">
       <div class="group-card-header">
         <span class="group-name">Group ${groupId}</span>
-        <span class="group-pick-hint">${complete ? '✅ Complete' : 'Click: 1st → 2nd'}</span>
+        <span class="group-pick-hint">${complete ? '✅ Complete' : groupPicks.first ? 'Now pick 2nd place' : 'Click to pick 1st place'}</span>
       </div>
       <div class="group-card-body">
         ${teamIds.map(teamId => renderGroupTeamRow(groupId, teamId, groupPicks)).join('')}
