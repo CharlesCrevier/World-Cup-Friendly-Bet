@@ -3,18 +3,18 @@
 // ============================================================
 
 const GROUPS = {
-  A: ['ARG', 'USA', 'SEN', 'AUS'],
-  B: ['FRA', 'CAN', 'NGA', 'JPN'],
-  C: ['ESP', 'SRB', 'EGY', 'KOR'],
-  D: ['ENG', 'MEX', 'MAR', 'IRN'],
-  E: ['BRA', 'CRO', 'GHA', 'IRQ'],
-  F: ['POR', 'CHE', 'RSA', 'QAT'],
-  G: ['GER', 'ECU', 'CMR', 'JOR'],
-  H: ['NED', 'COL', 'ALG', 'PAN'],
-  I: ['BEL', 'URU', 'COD', 'CRC'],
-  J: ['ITA', 'TUR', 'VEN', 'KSA'],
-  K: ['AUT', 'SCO', 'JAM', 'BOL'],
-  L: ['HUN', 'ROU', 'NZL', 'BHR'],
+  A: ['MEX', 'KOR', 'RSA', 'CZE'],
+  B: ['CAN', 'BIH', 'QAT', 'CHE'],
+  C: ['BRA', 'MAR', 'SCO', 'HAI'],
+  D: ['USA', 'PAR', 'AUS', 'TUR'],
+  E: ['GER', 'CUW', 'CIV', 'ECU'],
+  F: ['NED', 'JPN', 'SWE', 'TUN'],
+  G: ['BEL', 'IRN', 'EGY', 'NZL'],
+  H: ['ESP', 'URU', 'KSA', 'CPV'],
+  I: ['FRA', 'SEN', 'NOR', 'IRQ'],
+  J: ['ARG', 'AUT', 'ALG', 'JOR'],
+  K: ['POR', 'COD', 'UZB', 'COL'],
+  L: ['ENG', 'CRO', 'PAN', 'GHA'],
 };
 
 // R32 bracket: 16 matches
@@ -149,15 +149,6 @@ const TEAMS = {
       { name: 'Leandro Trossard', position: 'Left Wing / Attacking Midfielder', club: 'Arsenal', description: 'Versatile, technically excellent, and capable of world-class moments. Trossard\'s form at Arsenal has established him as one of Premier League\'s most reliable attackers and a key creative outlet for Belgium.' },
     ]
   },
-  ITA: {
-    name: 'Italy', flag: '🇮🇹', confederation: 'UEFA', probability: 3, fifaRank: 10,
-    description: 'Gli Azzurri rebuild after the emotional lows of missing consecutive World Cups and their Euro 2024 struggles. Italy\'s famed defensive organisation is being rebuilt around Donnarumma, while Barella\'s dynamism and the emerging quality of Zaccagni and Cambiaso give Luciano Spalletti offensive tools to complement Italian tradition.',
-    players: [
-      { name: 'Gianluigi Donnarumma', position: 'Goalkeeper', club: 'PSG', description: 'The best goalkeeper in the world. Donnarumma\'s extraordinary reflexes, aerial command, and composure make him the cornerstone of the Italian rebuild. His saves in tournament football have been legendary.' },
-      { name: 'Nicolò Barella', position: 'Central Midfielder', club: 'Inter Milan', description: 'The most dynamic midfielder Italy has produced in years. Barella\'s energy, box-to-box running, and ability to combine technically with physical intensity give Italy a vital engine in the middle.' },
-      { name: 'Federico Chiesa', position: 'Right Wing / Forward', club: 'Liverpool', description: 'When fully fit, Chiesa is capable of individual brilliance that changes games. His directness, dribbling, and goal threat make him Italy\'s most exciting attacking player and a nightmare for defenders.' },
-    ]
-  },
   COL: {
     name: 'Colombia', flag: '🇨🇴', confederation: 'CONMEBOL', probability: 3, fifaRank: 9,
     description: 'Colombia arrive as arguably the most exciting dark horse in the tournament. Their Copa América 2024 final appearance shocked the continent. Led by James Rodríguez orchestrating from deep and Luis Díaz terrorising defences on the wing, Colombia have the quality to upset the established hierarchy and reach the latter stages.',
@@ -192,15 +183,6 @@ const TEAMS = {
       { name: 'Luka Modrić', position: 'Central Midfielder / Captain', club: 'Real Madrid', description: 'The Ballon d\'Or winner and World Cup golden ball recipient whose technical mastery defies age. Modrić\'s vision, range of passing, and ability to control the rhythm of a game continue to define Croatian football, possibly in his final World Cup.' },
       { name: 'Joško Gvardiol', position: 'Centre-Back / Left Back', club: 'Manchester City', description: 'Emerging as one of the best defenders in the world at just 22. Gvardiol\'s pace, composure on the ball, and defensive intelligence have made him central to both Manchester City and Croatia\'s back lines.' },
       { name: 'Mateo Kovačić', position: 'Central Midfielder', club: 'Manchester City', description: 'The industrious, technically excellent midfielder who epitomises Croatian football. Kovačić\'s tireless running, technical quality, and ability to connect defence and attack are invaluable in Croatia\'s compact system.' },
-    ]
-  },
-  SRB: {
-    name: 'Serbia', flag: '🇷🇸', confederation: 'UEFA', probability: 1, fifaRank: 30,
-    description: 'Serbia possess exceptional individual talent, particularly in attack where Vlahović leads one of Europe\'s most feared forward lines. Their challenge has always been converting individual brilliance into collective excellence. When they click, Serbia can beat anyone; the 2026 World Cup is their chance to finally show their best on the biggest stage.',
-    players: [
-      { name: 'Dušan Vlahović', position: 'Centre-Forward', club: 'Juventus', description: 'One of Europe\'s most lethal finishers. Vlahović\'s physical power, aerial ability, and clinical left foot make him a constant threat. His Serie A goal-scoring record is among the best in recent years.' },
-      { name: 'Sergej Milinković-Savić', position: 'Central Midfielder / Box-to-Box', club: 'Al-Hilal', description: 'The powerful, technically gifted midfielder who was one of Serie A\'s finest players at Lazio. His physical presence, range of passing, and goal threat from midfield give Serbia an imposing engine.' },
-      { name: 'Dušan Tadić', position: 'Attacking Midfielder / Left Wing', club: 'Fenerbahçe', description: 'The experienced captain and technical lynchpin whose vision and set-piece quality have been central to Serbian football for a decade. His ability to create opportunities in tight spaces remains exceptional.' },
     ]
   },
   CHE: {
@@ -293,15 +275,6 @@ const TEAMS = {
       { name: 'Ismaïla Sarr', position: 'Right Wing / Forward', club: 'Crystal Palace', description: 'The electric Premier League winger who combines blistering pace with improving technical quality. Sarr\'s direct running, goal threat, and crossing ability give Senegal a dangerous right-side attack.' },
     ]
   },
-  NGA: {
-    name: 'Nigeria', flag: '🇳🇬', confederation: 'CAF', probability: 0.5, fifaRank: 36,
-    description: 'The Super Eagles carry enormous potential that has too often remained unfulfilled. Viktor Osimhen\'s emergence as one of the world\'s best strikers gives Nigeria a focal point unlike any they\'ve previously possessed. If they can channel their individual quality into collective organisation, Nigeria can be a genuine knockout threat.',
-    players: [
-      { name: 'Victor Osimhen', position: 'Centre-Forward', club: 'Napoli', description: 'One of the most explosive strikers in world football. Osimhen\'s electric pace, physicality, aerial ability, and finishing make him devastating in one-on-one situations and on the break. His Serie A form has been outstanding.' },
-      { name: 'Ademola Lookman', position: 'Left Wing / Second Striker', club: 'Atalanta', description: 'The English-born Nigerian who has transformed into one of Serie A\'s finest attackers at Atalanta. Lookman\'s quick feet, direct running, and clinical finishing — including a Europa League final hat-trick — mark him as world-class talent.' },
-      { name: 'Moses Simon', position: 'Left Wing / Right Wing', club: 'Nantes', description: 'The enduring wide forward who has been Nigeria\'s consistent creative outlet for years. Simon\'s pace, dribbling, and work ethic on both flanks give Nigeria energy and creativity in wide areas.' },
-    ]
-  },
   EGY: {
     name: 'Egypt', flag: '🇪🇬', confederation: 'CAF', probability: 0.5, fifaRank: 34,
     description: 'Egypt\'s World Cup aspirations are synonymous with Mohamed Salah, whose career has reached the summit of world football with Liverpool. The Pharaohs have built a team worthy of their talisman, with defensive stability and clinical counter-attacking football giving them the platform to cause upsets.',
@@ -318,15 +291,6 @@ const TEAMS = {
       { name: 'Mohammed Kudus', position: 'Attacking Midfielder / Right Wing', club: 'West Ham', description: 'One of the most exciting young African players in European football. Kudus\'s dribbling, creativity, and ability to score from wide areas or deep positions have been outstanding at West Ham. His unpredictability and technical quality make him a major threat.' },
       { name: 'Jordan Ayew', position: 'Forward / Second Striker', club: 'Al-Qadsiah', description: 'The experienced forward and elder of the famous Ayew footballing family who provides Ghana with composure and know-how up front. Ayew\'s link play, work rate, and experience are invaluable for Ghana\'s organised attacks.' },
       { name: 'Antoine Semenyo', position: 'Right Wing / Forward', club: 'Bournemouth', description: 'The powerful, direct Premier League winger who combines physical pace with technical quality. Semenyo\'s ability to run at defenders and create danger from wide positions gives Ghana an explosive outlet in attack.' },
-    ]
-  },
-  CMR: {
-    name: 'Cameroon', flag: '🇨🇲', confederation: 'CAF', probability: 0.5, fifaRank: 43,
-    description: 'The Indomitable Lions have the physicality and technical talent to cause problems for any opponent. Led by Mbeumo and Choupo-Moting, Cameroon\'s attack is capable of world-class moments. Their challenge, as always, is converting individual talent into consistent collective performance.',
-    players: [
-      { name: 'Bryan Mbeumo', position: 'Right Wing / Second Striker', club: 'Brentford', description: 'One of the Premier League\'s most consistent scorers and creators. Mbeumo\'s technical quality, directness, and goal-scoring consistency for Brentford have made him one of Cameroon\'s most important players.' },
-      { name: 'Eric Maxim Choupo-Moting', position: 'Centre-Forward', club: 'Bayern Munich', description: 'The experienced international whose technical quality, physical presence, and composure in front of goal have been consistently underestimated. Choupo-Moting\'s form at Bayern Munich late in his career has been impressive.' },
-      { name: 'André-Frank Zambo Anguissa', position: 'Defensive / Central Midfielder', club: 'Napoli', description: 'The powerful, technically gifted midfielder who has been central to Napoli\'s defensive and offensive structure. Anguissa\'s physical dominance, technical quality, and energy give Cameroon a world-class midfield anchor.' },
     ]
   },
   ALG: {
@@ -365,15 +329,6 @@ const TEAMS = {
       { name: 'Gonzalo Plata', position: 'Right Wing / Forward', club: 'Al-Qadsiah', description: 'The direct, quick winger who brings pace and technical quality to Ecuador\'s right flank. Plata\'s ability to beat defenders and deliver into dangerous areas provides Ecuador with consistent attacking width.' },
     ]
   },
-  VEN: {
-    name: 'Venezuela', flag: '🇻🇪', confederation: 'CONMEBOL', probability: 0.3, fifaRank: 29,
-    description: 'Venezuela have undergone a remarkable transformation under Argentinian coach Fernando Batista, qualifying for their first-ever World Cup. Built around a young, fearless generation with impressive technical quality, La Vinotinto arrive at their historic debut with nothing to lose and everything to gain.',
-    players: [
-      { name: 'Yeferson Soteldo', position: 'Left Wing / Second Striker', club: 'Santos', description: 'The diminutive but explosive winger who is incredibly difficult to stop in one-on-one situations. Soteldo\'s low centre of gravity, balance, and skill make him Venezuela\'s most unpredictable attacking weapon.' },
-      { name: 'Salomón Rondón', position: 'Centre-Forward', club: 'Free Agent', description: 'Venezuela\'s record international goal scorer and the experienced target man around whom the team\'s attack is built. Rondón\'s aerial ability, hold-up play, and goal-scoring experience remain vital even as he approaches the end of his career.' },
-      { name: 'Darwin Machís', position: 'Left Wing / Forward', club: 'Getafe', description: 'The pacy, direct winger who has been a consistent performer in La Liga. Machís\'s speed, directness, and ability to deliver in wide areas give Venezuela an attacking threat on the left flank.' },
-    ]
-  },
   SCO: {
     name: 'Scotland', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', confederation: 'UEFA', probability: 0.3, fifaRank: 37,
     description: 'Scotland\'s World Cup return ends a 28-year absence that has haunted the nation. Under Steve Clarke, Scotland have developed into a competitive, well-organised side with Premier League quality throughout. Robertson\'s leadership, McTominay\'s goals from midfield, and collective defensive organisation make them a potential surprise package.',
@@ -401,24 +356,6 @@ const TEAMS = {
       { name: 'Kerem Aktürkoğlu', position: 'Left Wing / Forward', club: 'Galatasaray', description: 'The explosive, direct winger who has been one of Galatasaray\'s most impactful players in European football. Aktürkoğlu\'s pace, directness, and goal threat from wide areas give Türkiye consistent danger on the left side.' },
     ]
   },
-  HUN: {
-    name: 'Hungary', flag: '🇭🇺', confederation: 'UEFA', probability: 0.3, fifaRank: 34,
-    description: 'Hungary\'s return to competitive European tournament football has been built around Dominik Szoboszlai\'s extraordinary rise to Premier League stardom. Under Marco Rossi, they have become a well-organised, competitive side whose attacking threat and collective work rate make them difficult to beat.',
-    players: [
-      { name: 'Dominik Szoboszlai', position: 'Attacking / Central Midfielder', club: 'Liverpool', description: 'Liverpool\'s energetic, technically gifted captain who combines box-to-box running with outstanding technique and a powerful long-range shot. Szoboszlai\'s performances in the Premier League have confirmed him as a world-class talent.' },
-      { name: 'Péter Gulácsi', position: 'Goalkeeper', club: 'RB Leipzig', description: 'One of the Bundesliga\'s most consistent goalkeepers over many years. Gulácsi\'s shot-stopping ability, composure, and distribution have been the foundation of Hungary\'s defensive solidity.' },
-      { name: 'Roland Sallai', position: 'Right Wing / Attacking Midfielder', club: 'Freiburg', description: 'The Bundesliga winger who brings consistent quality and work rate to Hungary\'s right side. Sallai\'s crossing, dribbling, and defensive contribution make him a reliable performer in Hungary\'s system.' },
-    ]
-  },
-  ROU: {
-    name: 'Romania', flag: '🇷🇴', confederation: 'UEFA', probability: 0.3, fifaRank: 46,
-    description: 'Romania\'s Euro 2024 campaign — including an impressive group-stage win against Ukraine — showed a talented, well-organised team. The Hagi generation has passed, but Ianis Hagi carries his father\'s legacy, and a core of professional players operating across Europe has restored Romanian ambition.',
-    players: [
-      { name: 'Ianis Hagi', position: 'Attacking Midfielder / Right Wing', club: 'Rangers', description: 'Carrying one of football\'s great names, Ianis has developed into a talented player in his own right. His technical quality, vision, and dead-ball delivery make him Romania\'s creative hub, though he must escape his father\'s shadow.' },
-      { name: 'Nicolae Stanciu', position: 'Attacking / Central Midfielder', club: 'Wuhan Three Towns', description: 'The experienced captain whose technical quality and passing vision remain Romania\'s highest level of creative output. Stanciu\'s ability to break defensive lines with passes and score from distance are vital to Romania\'s offensive approach.' },
-      { name: 'Radu Drăgușin', position: 'Centre-Back', club: 'Tottenham Hotspur', description: 'The impressive young centre-back who has established himself in the Premier League. Drăgușin\'s composure, aerial ability, and technical quality in possession give Romania a reliable defensive anchor built for modern football.' },
-    ]
-  },
   PAN: {
     name: 'Panama', flag: '🇵🇦', confederation: 'CONCACAF', probability: 0.2, fifaRank: 55,
     description: 'Los Canaleros have established themselves as one of CONCACAF\'s most competitive nations. Their physical, organised approach under Thomas Christiansen gives them defensive solidity that makes them difficult to beat, and they are capable of causing upsets against stronger sides with a compact defensive shape.',
@@ -426,24 +363,6 @@ const TEAMS = {
       { name: 'Rodolfo Pitti', position: 'Centre-Forward', club: 'Elche', description: 'Panama\'s most dynamic and prolific attacker whose pace and physicality in European football give Los Canaleros a direct threat in transition. Pitti\'s ability to hold the ball and bring others into play is essential to Panama\'s attack.' },
       { name: 'César Blackman', position: 'Defensive Midfielder', club: 'Godoy Cruz', description: 'The energetic and competitive midfielder whose physical presence and defensive work rate give Panama the base to defend deep and hit teams on the counter. His engine makes Panama difficult to play through.' },
       { name: 'Aníbal Godoy', position: 'Defensive Midfielder / Centre-Back', club: 'Nashville SC', description: 'Panama\'s highly experienced defensive anchor who has been instrumental in their qualification campaigns. Godoy\'s leadership, physical intensity, and defensive intelligence provide the backbone of Panama\'s disciplined system.' },
-    ]
-  },
-  JAM: {
-    name: 'Jamaica', flag: '🇯🇲', confederation: 'CONCACAF', probability: 0.2, fifaRank: 61,
-    description: 'The Reggae Boyz finally qualify for their first World Cup since France 1998, built around a golden generation of British-Jamaican players. With Leon Bailey and Michail Antonio leading the attack, Jamaica will bring physical dynamism, Caribbean flair, and relentless pressing to the competition.',
-    players: [
-      { name: 'Leon Bailey', position: 'Right Wing / Left Wing', club: 'Aston Villa', description: 'One of the Premier League\'s most exciting wide players. Bailey\'s pace, power, and direct dribbling ability make him difficult to contain. His ability to beat defenders in one-on-one situations and his goal threat give Jamaica genuine attacking quality.' },
-      { name: 'Michail Antonio', position: 'Centre-Forward', club: 'West Ham', description: 'The experienced, physical Jamaica-born West Ham striker who brings Premier League know-how to the national team. Antonio\'s physical presence, aerial ability, and competitive nature make him a handful for any central defender.' },
-      { name: 'Shamar Nicholson', position: 'Centre-Forward / Right Wing', club: 'Club Brugge', description: 'The pacy Belgian Pro League striker who has been Jamaica\'s most consistent international scorer. Nicholson\'s movement, directness, and clinical finishing give Jamaica a dangerous outlet alongside Antonio.' },
-    ]
-  },
-  CRC: {
-    name: 'Costa Rica', flag: '🇨🇷', confederation: 'CONCACAF', probability: 0.3, fifaRank: 49,
-    description: 'Los Ticos have established a remarkable World Cup tradition despite their limited population. Their 2014 quarter-final remains Central American football\'s greatest achievement. Veterans like Keylor Navas continue to provide world-class quality alongside a new generation in what may be the last hurrah of this famous era.',
-    players: [
-      { name: 'Keylor Navas', position: 'Goalkeeper', club: 'Deportivo Saprissa', description: 'Perhaps the greatest goalkeeper in CONCACAF history and a Champions League winner with Real Madrid. Navas\'s extraordinary reflexes, bravery, and big-game temperament have given Costa Rica results they would never otherwise achieve.' },
-      { name: 'Bryan Ruiz', position: 'Attacking Midfielder / Forward', club: 'Deportivo Saprissa', description: 'The legendary technically gifted playmaker who has been the creative heart of Costa Rica for over 15 years. Though veteran, Ruiz\'s technical quality and tournament experience remain invaluable in key moments.' },
-      { name: 'Joel Campbell', position: 'Forward / Right Wing', club: 'Deportivo Saprissa', description: 'The former Arsenal forward who has been a consistent international performer. Campbell\'s experience, directness, and ability to deliver in high-pressure moments give Costa Rica a proven right-side attacking threat.' },
     ]
   },
   QAT: {
@@ -482,22 +401,103 @@ const TEAMS = {
       { name: 'Liberato Cacace', position: 'Left Back / Left Wing', club: 'Empoli', description: 'The Serie A-based attacking full-back who provides New Zealand with European quality and dynamic width on the left side. Cacace\'s technical ability and attacking quality are well above average for the OFC.' },
     ]
   },
-  BOL: {
-    name: 'Bolivia', flag: '🇧🇴', confederation: 'CONMEBOL', probability: 0.1, fifaRank: 88,
-    description: 'Bolivia\'s historic qualification caps a dramatic improvement in South American football\'s highest-altitude nation. The Verde\'s record at sea-level venues is challenging but improving, and they bring a collection of professional players operating across South America determined to make their first World Cup mark.',
+  CZE: {
+    name: 'Czech Republic', flag: '🇨🇿', confederation: 'UEFA', probability: 0.5, fifaRank: 37,
+    description: 'Czech Republic qualified through the UEFA playoffs, defeating Italy on penalties in a dramatic final. Built around the powerful Sparta Prague and Slavia Prague domestic core alongside Premier League stars, the Czechs bring resilient technical quality. Led by one of Europe\'s most clinical strikers, they are here to prove a point.',
     players: [
-      { name: 'Marcelo Martins', position: 'Centre-Forward', club: 'Cruzeiro', description: 'Bolivia\'s all-time top scorer and inspirational captain whose experience and goals have been central to this historic World Cup qualification. Martins\'s physicality, leadership, and goal-scoring instinct are Bolivia\'s most important individual asset.' },
-      { name: 'Ramiro Vaca', position: 'Attacking / Central Midfielder', club: 'The Strongest', description: 'Bolivia\'s most creative midfielder whose technical quality and vision give their attack a clever option in tight spaces. Vaca\'s ability to find pockets of space and deliver penetrating passes is what separates Bolivia from pure physicality.' },
-      { name: 'Henry Vaca', position: 'Right Wing / Attacking Midfielder', club: 'Blooming', description: 'The direct right winger whose pace and energy give Bolivia consistent attacking threat from wide areas. Vaca\'s willingness to run at defenders and deliver into dangerous positions makes Bolivia more of an attacking threat than pure results suggest.' },
+      { name: 'Patrik Schick', position: 'Centre-Forward', club: 'Bayer Leverkusen', description: 'One of the Bundesliga\'s most lethal finishers. Schick\'s clinical left foot, aerial ability, and composure in the box make him the centrepiece of Czech attacking play. His long-range Euro 2020 goal against Scotland is already iconic.' },
+      { name: 'Tomáš Souček', position: 'Central Midfielder', club: 'West Ham United', description: 'A Premier League powerhouse who combines extraordinary aerial ability with technical quality and an underrated goal threat. Souček\'s box-to-box energy and leadership are the foundation of the Czech midfield.' },
+      { name: 'Vladimír Coufal', position: 'Right Back', club: 'West Ham United', description: 'One of the most reliable and dynamic right backs in the Premier League. Coufal\'s defensive solidity, overlapping runs, and delivery from wide areas provide Czech Republic with consistent quality on the right flank.' },
     ]
   },
-  BHR: {
-    name: 'Bahrain', flag: '🇧🇭', confederation: 'AFC', probability: 0.1, fifaRank: 79,
-    description: 'Bahrain\'s first-ever World Cup qualification through the intercontinental playoffs is a historic achievement for the small Gulf nation. Built on strong defensive organisation and quick transitions with natural technical ability, they aim to make a mark and inspire future generations across the Gulf region.',
+  BIH: {
+    name: 'Bosnia and Herzegovina', flag: '🇧🇦', confederation: 'UEFA', probability: 0.3, fifaRank: 62,
+    description: 'Bosnia and Herzegovina return to the World Cup stage for just the second time in their history, having previously appeared in Brazil 2014. Their playoff qualification run was emotional and richly deserved. The Dragons are powered by prolific European-based strikers and a passionate fanbase.',
     players: [
-      { name: 'Mohamed Marhoon', position: 'Central / Attacking Midfielder', club: 'Al-Riffa', description: 'Bahrain\'s most technically gifted and influential midfielder who creates opportunities with intelligence and vision. Marhoon\'s ability to dictate tempo and create chances is what makes Bahrain dangerous in possession.' },
-      { name: 'Mahdi Abduljabbar', position: 'Centre-Forward', club: 'Al-Riffa', description: 'Bahrain\'s most prolific goal scorer whose movement, finishing, and physical presence give the national team a reliable focal point. Abduljabbar\'s ability to score from limited chances is essential for a side expected to defend deep.' },
-      { name: 'Sayed Dhiya Saeed', position: 'Left Wing / Attacking Midfielder', club: 'Al-Riffa', description: 'The quick, direct winger who provides Bahrain with attacking pace and creativity on the left side. Saeed\'s ability to beat defenders in wide areas and deliver crosses gives Bahrain width and an outlet in transition.' },
+      { name: 'Ermedin Demirović', position: 'Centre-Forward', club: 'Stuttgart', description: 'One of the Bundesliga\'s most consistent scorers. Demirović\'s relentless pressing, intelligent movement, and clinical finishing have made him one of European football\'s most sought-after strikers. He is the focal point of everything Bosnia do offensively.' },
+      { name: 'Edin Džeko', position: 'Centre-Forward', club: 'Fenerbahçe', description: 'Bosnia\'s all-time leading scorer and legendary captain. Even in the latter stages of his career, Džeko\'s football intelligence, technical quality, and leadership give Bosnia immeasurable experience and goals from the bench or when called upon.' },
+      { name: 'Amer Gojak', position: 'Central Midfielder', club: 'Trabzonspor', description: 'An energetic and technically gifted midfielder whose range of passing and pressing intensity help Bosnia control games in the middle third. Gojak\'s ability to link defence and attack fluidly is central to Bosnia\'s structure.' },
+    ]
+  },
+  HAI: {
+    name: 'Haiti', flag: '🇭🇹', confederation: 'CONCACAF', probability: 0.2, fifaRank: 83,
+    description: 'Haiti qualify for their second-ever World Cup, having first appeared in 1974. In a competitive CONCACAF qualifying campaign the Grenadiers emerged as a genuine surprise package. Known for vibrant attacking play, resilient defending, and passionate supporters, Haiti arrive on the world stage with nothing to lose.',
+    players: [
+      { name: 'Frantzdy Pierrot', position: 'Centre-Forward', club: 'CD Santa Clara', description: 'Haiti\'s most clinical finisher and national team top scorer. Pierrot\'s combination of physicality, intelligent movement, and finishing ability make him the focal point of Haiti\'s attack and their greatest goal threat.' },
+      { name: 'Duckens Nazon', position: 'Right Wing / Forward', club: 'UNAM Pumas', description: 'An explosive and direct winger who gives Haiti an outlet on the break. Nazon\'s pace and directness make him difficult to track at full speed, and his ability to stretch defences creates space for team-mates.' },
+      { name: 'Romario Williams', position: 'Striker / Right Wing', club: 'FC Dallas', description: 'A powerful and industrious forward whose combination of work rate and finishing ability in MLS has translated into consistent international performances. Williams brings energy, pressing and goals to Haiti\'s forward line.' },
+    ]
+  },
+  PAR: {
+    name: 'Paraguay', flag: '🇵🇾', confederation: 'CONMEBOL', probability: 0.6, fifaRank: 54,
+    description: 'Paraguay return to the World Cup for the first time since 2010, ending a sixteen-year absence through sheer resilience in South America\'s gruelling qualifying campaign. The Albirroja are led by a new generation of Premier League stars determined to match the quarter-final heroics of previous Paraguayan generations.',
+    players: [
+      { name: 'Miguel Almirón', position: 'Attacking Midfielder / Forward', club: 'Newcastle United', description: 'The Premier League fan favourite whose relentless energy, technical quality, and direct running make him one of the most exciting players in Paraguay\'s history. Almirón\'s ability to combine tireless pressing with goals and assists is his trademark.' },
+      { name: 'Julio Enciso', position: 'Forward / Attacking Midfielder', club: 'Brighton & Hove Albion', description: 'An electrifying young forward with the ability to score spectacular goals and make things happen from nothing. Enciso\'s unpredictability, creativity, and explosive pace make him one of South America\'s most exciting young talents.' },
+      { name: 'Gustavo Gómez', position: 'Centre-Back', club: 'Palmeiras', description: 'Paraguay\'s commanding and experienced captain. Gómez\'s aerial dominance, composed reading of the game, and leadership at the back of a South American champion club have made him the defensive bedrock around which Paraguay\'s qualifying success was built.' },
+    ]
+  },
+  CUW: {
+    name: 'Curaçao', flag: '🇨🇼', confederation: 'CONCACAF', probability: 0.1, fifaRank: 78,
+    description: 'Making their historic first-ever World Cup appearance, Curaçao is 2026\'s most extraordinary new entrant. The tiny Dutch Caribbean island — population just 150,000 — has punched spectacularly above its weight in CONCACAF, aided by Dutch football connections and a growing pool of European-based players. An unforgettable debut.',
+    players: [
+      { name: 'Leandro Bacuna', position: 'Midfielder / Right Back', club: 'Reading', description: 'The Dutch-born veteran who has been the cornerstone of Curaçao\'s rise for over a decade. Bacuna\'s experience in English football, versatility across midfield and defence, and leadership set the standard for this historic qualifying squad.' },
+      { name: 'Juninho Bacuna', position: 'Central Midfielder', club: 'Birmingham City', description: 'Leandro\'s younger brother and a technically gifted central midfielder who has established himself in the Championship. Juninho\'s energy, passing range, and direct running give Curaçao quality in the engine room.' },
+      { name: 'Gevaro Nepomuceno', position: 'Left Wing / Attacking Midfielder', club: 'Various', description: 'One of Curaçao\'s most technically gifted players whose creativity and flair in wide areas give the team an unpredictable attacking outlet. Nepomuceno\'s ability to beat defenders and create chances has been central to their CONCACAF success.' },
+    ]
+  },
+  CIV: {
+    name: 'Ivory Coast', flag: '🇨🇮', confederation: 'CAF', probability: 1.5, fifaRank: 44,
+    description: 'The Elephants arrive fresh from their triumphant Africa Cup of Nations title on home soil, making them the most in-form African side in the tournament. Backed by outstanding talent across Europe\'s top leagues, Ivory Coast combine physical power with genuine technical quality. They are a realistic dark horse for the knockout stages.',
+    players: [
+      { name: 'Sébastien Haller', position: 'Centre-Forward', club: 'Borussia Dortmund', description: 'A towering target forward who survived a life-threatening illness to return as one of the Bundesliga\'s most effective strikers. Haller\'s aerial dominance, link-up play, and composure in the box make him the perfect focal point for Ivory Coast\'s attack.' },
+      { name: 'Franck Kessié', position: 'Central Midfielder', club: 'Al-Ahli', description: 'A Champions League winner and Premier League player with Barcelona in between, Kessié\'s physicality, stamina, and technical quality make him one of the most complete midfielders in African football. His engine and goals from deep are irreplaceable.' },
+      { name: 'Simon Adingra', position: 'Left Wing / Forward', club: 'Brighton & Hove Albion', description: 'The AFCON hero whose goals helped Ivory Coast to continental glory on home soil. Adingra\'s explosive pace, directness, and clinical finishing have made him one of the Premier League\'s most exciting young wide forwards and Ivory Coast\'s brightest new star.' },
+    ]
+  },
+  SWE: {
+    name: 'Sweden', flag: '🇸🇪', confederation: 'UEFA', probability: 1.0, fifaRank: 26,
+    description: 'Sweden return to the World Cup stage after missing out in 2022, re-energised by a new generation led by two of the Premier League\'s most lethal strikers. The Vikings\' characteristic tactical discipline and pressing intensity, combined with extraordinary individual quality up front, make them a genuine threat to any opposition.',
+    players: [
+      { name: 'Viktor Gyökeres', position: 'Centre-Forward', club: 'Arsenal', description: 'One of the most prolific strikers in European football, having shattered records at Sporting CP before moving to Arsenal. Gyökeres\'s physical power, relentless pressing, technical quality, and extraordinary goal-scoring consistency make him one of the most feared strikers at this tournament.' },
+      { name: 'Alexander Isak', position: 'Centre-Forward / Second Striker', club: 'Newcastle United', description: 'An elegant, quick and increasingly prolific striker who has become one of the Premier League\'s finest attackers. Isak\'s movement, technical quality, and composure in front of goal give Sweden a fluid, intelligent alternative to Gyökeres\'s physicality.' },
+      { name: 'Dejan Kulusevski', position: 'Right Wing / Attacking Midfielder', club: 'Tottenham Hotspur', description: 'A dynamic, technically brilliant wide player who has been one of Tottenham\'s most consistent performers. Kulusevski\'s directness, creativity, and ability to score and assist in equal measure give Sweden a creative spark that connects their midfield with their world-class strikers.' },
+    ]
+  },
+  TUN: {
+    name: 'Tunisia', flag: '🇹🇳', confederation: 'CAF', probability: 0.5, fifaRank: 34,
+    description: 'Tunisia are one of Africa\'s most consistent World Cup nations, appearing at their seventh edition. The Eagles of Carthage combine technical Mediterranean football with excellent defensive organisation. Known for their competitive resilience — including a famous win over France in Qatar 2022 — they are capable of upsetting stronger opponents.',
+    players: [
+      { name: 'Hannibal Mejbri', position: 'Central / Attacking Midfielder', club: 'Burnley', description: 'The technically gifted young midfielder who developed at Manchester United and has become the creative heart of Tunisia\'s attack. Hannibal\'s vision, dribbling, and ability to find pockets of space make him Tunisia\'s most dangerous creative presence.' },
+      { name: 'Wahbi Khazri', position: 'Attacking Midfielder / Second Striker', club: 'Al-Ittihad', description: 'The experienced playmaker and Tunisia\'s most creative player of the past decade. Khazri\'s technical quality, goal-scoring instinct, and ability to unlock defences with clever movement and passing make him a constant threat when in form.' },
+      { name: 'Mohamed Drager', position: 'Right Back / Wing-Back', club: 'FC Copenhagen', description: 'A dynamic and combative right back who contributes offensively with intelligent overlapping runs and consistent deliveries. Drager\'s defensive solidity combined with his attacking contribution make him one of the most complete backs in African football.' },
+    ]
+  },
+  NOR: {
+    name: 'Norway', flag: '🇳🇴', confederation: 'UEFA', probability: 2.5, fifaRank: 28,
+    description: 'Norway arrive at their first World Cup since 2002 with arguably the most feared striker on the planet. Erling Haaland\'s presence alone transforms this team into genuine dark horses with the ability to go deep into the knockout stages. If the team around him fires, Norway could be the biggest story of the 2026 World Cup.',
+    players: [
+      { name: 'Erling Haaland', position: 'Centre-Forward', club: 'Manchester City', description: 'The most prolific striker in the world and arguably in football history by goals per game. Haaland\'s combination of extraordinary physical power, speed, movement, and clinical finishing is essentially unplayable on his best days. One man who can win Norway a tournament.' },
+      { name: 'Martin Ødegaard', position: 'Attacking Midfielder / CAM', club: 'Arsenal', description: 'Arsenal\'s captain and one of the Premier League\'s finest playmakers. Ødegaard\'s vision, technical quality, and ability to create chances from the half-space make him the perfect partner for Haaland — delivering the service the striker needs to devastate defences.' },
+      { name: 'Sander Berge', position: 'Central / Defensive Midfielder', club: 'Fulham', description: 'A powerful, technically gifted midfielder who has established himself as one of the Premier League\'s best. Berge\'s imposing physical presence, range of passing, and ability to win the ball and drive forward give Norway a genuine all-round midfielder to anchor their engine room.' },
+    ]
+  },
+  UZB: {
+    name: 'Uzbekistan', flag: '🇺🇿', confederation: 'AFC', probability: 0.3, fifaRank: 68,
+    description: 'Uzbekistan make their first-ever FIFA World Cup appearance, capping a remarkable rise through investment in youth development and coaching. The White Wolves stunned the AFC qualifying campaign and opened a new chapter in Central Asian football. They arrive with nothing to lose and a young squad eager to make their historic mark.',
+    players: [
+      { name: 'Eldor Shomurodov', position: 'Centre-Forward / Second Striker', club: 'Roma', description: 'Uzbekistan\'s most famous export and the player who put Central Asian football on the map. Shomurodov\'s intelligent movement, technical quality, and goal-scoring ability at Roma give Uzbekistan a genuine Serie A-proven striker to lead their historic campaign.' },
+      { name: 'Jaloliddin Masharipov', position: 'Attacking Midfielder / Winger', club: 'Pakhtakor', description: 'A technically gifted and quick attacker who has been the creative hub of Uzbek football for years. Masharipov\'s dribbling, vision, and ability to unlock defences in tight spaces make him the player most likely to create something special for Uzbekistan.' },
+      { name: 'Abbosbek Fayzullaev', position: 'Left Wing / Attacking Midfielder', club: 'CSKA Moscow', description: 'A dynamic young winger whose pace, directness, and technical quality have attracted attention across European football. Fayzullaev\'s energy and ability to beat defenders on the left side give Uzbekistan a fast, direct outlet going forward.' },
+    ]
+  },
+  CPV: {
+    name: 'Cape Verde', flag: '🇨🇻', confederation: 'CAF', probability: 0.2, fifaRank: 75,
+    description: 'The Blue Sharks of Cape Verde continue to punch spectacularly above their weight for a nation of just 500,000 people. Having qualified for multiple Africa Cup of Nations tournaments and won the CAF qualifying group outright, they made the World Cup leap on merit. Most players are Portugal-based, giving them a technical quality that belies their ranking.',
+    players: [
+      { name: 'Ryan Mendes', position: 'Left Wing / Forward', club: 'Vitória de Guimarães', description: 'Cape Verde\'s most experienced attacking player whose technical quality and creativity on the left flank have been central to the Blue Sharks\' success. Mendes\'s ability to cut inside, deliver, and score gives Cape Verde their most consistent attacking threat.' },
+      { name: 'Garry Rodrigues', position: 'Right Wing / Left Wing', club: 'Aris Thessaloniki', description: 'A direct and pacy winger who has played across European football. Rodrigues\'s ability to beat defenders in wide areas, deliver crosses, and contribute goals make him one of Cape Verde\'s most dangerous attacking threats on either flank.' },
+      { name: 'Stopira', position: 'Centre-Back', club: 'Getafe CF', description: 'The veteran centre-back whose experience in La Liga has given Cape Verde a defensive cornerstone. Stopira\'s aerial dominance, composure on the ball, and leadership at the back have been fundamental to Cape Verde\'s defensive solidity in qualifying.' },
     ]
   },
 };
