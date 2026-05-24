@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITCILO ⚽ World Cup 2026 — Friendly Predictions</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+</head>
+<body>
+
+<!-- ===================================================
+     LOGIN SCREEN
+     =================================================== -->
+<div id="login-screen">
+  <div class="login-card">
+    <span class="login-trophy">⚽🏆</span>
+    <h1 class="login-title">World Cup 2026</h1>
+    <p class="login-subtitle">Friendly Predictions & Bracket Challenge</p>
+    <p class="login-org">INTERNATIONAL TRAINING CENTRE OF THE ILO</p>
+
+    <form id="register-form" class="login-form">
+      <div class="form-group">
+        <label class="form-label" for="register-name">Enter your name to join</label>
+        <input class="form-input" type="text" id="register-name" placeholder="Your name…" maxlength="40" autocomplete="off" required>
+      </div>
+      <button class="btn btn-primary" type="submit">
+        ⚽ &nbsp; Join the Predictions
+      </button>
+    </form>
+
+    <div class="login-divider-section">
+      <div class="login-divider">or continue as</div>
+      <div class="existing-users" id="existing-users-list"></div>
+    </div>
+
+    <p style="margin-top:1.5rem;font-size:0.72rem;color:var(--text-dim)">
+      Predictions are stored locally in your browser. No account needed.
+    </p>
+  </div>
+</div>
+
+<!-- ===================================================
+     MAIN APP
+     =================================================== -->
+<div id="main-app" class="hidden">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-brand">
+      <span class="header-trophy">⚽</span>
+      <div>
+        <div class="header-title">World Cup 2026</div>
+        <div class="header-org">ITCILO Friendly Predictions</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <button class="btn-icon" onclick="exportData()" title="Export all predictions as JSON">⬇</button>
+      <button class="btn-icon" onclick="importData()" title="Import predictions from JSON">⬆</button>
+      <div class="header-user" onclick="switchUser()">
+        <div class="user-avatar" id="header-avatar"></div>
+        <div>
+          <div class="user-name" id="header-user-name"></div>
+          <div class="header-user-label">Switch user</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <button class="nav-btn active" data-tab="home" onclick="showTab('home')">
+      <span class="nav-icon">🏠</span> Home
+    </button>
+    <button class="nav-btn" data-tab="teams" onclick="showTab('teams')">
+      <span class="nav-icon">🌍</span> Teams & Stats
+    </button>
+    <button class="nav-btn" data-tab="bracket" onclick="showTab('bracket')">
+      <span class="nav-icon">📋</span> My Bracket
+    </button>
+    <button class="nav-btn" data-tab="leaderboard" onclick="showTab('leaderboard')">
+      <span class="nav-icon">🏅</span> Leaderboard
+    </button>
+  </nav>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- ====== HOME TAB ====== -->
+    <div id="tab-home" class="tab-panel active">
+
+      <div class="home-hero">
+        <div class="home-hero-badge">🗓 FIFA World Cup 2026</div>
+        <h1>Who will lift the <span>trophy?</span></h1>
+        <p>Pick your champion, fill in your bracket, and compete with colleagues across ITCILO. The tournament kicks off 11 June 2026 in the USA, Mexico and Canada.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="showTab('teams')" style="width:auto">
+            🏆 Pick My Champion
+          </button>
+          <button class="btn btn-secondary" onclick="showTab('bracket')" style="width:auto">
+            📋 Fill My Bracket
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="home-stats">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-value" id="stat-participants">0</div>
+          <div class="stat-label">Participants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🌍</div>
+          <div class="stat-value" id="stat-teams">48</div>
+          <div class="stat-label">Teams</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-value" id="stat-days">—</div>
+          <div class="stat-label">Days to kickoff</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-value" id="stat-my-picks">0</div>
+          <div class="stat-label">My picks made</div>
+        </div>
+      </div>
+
+      <!-- Champion pick -->
+      <div class="my-pick-section">
+        <div class="section-header">
+          <div class="section-title"><span class="section-icon">🏆</span> My Champion Pick</div>
+          <button class="btn btn-ghost btn-sm" onclick="showTab('teams')">Browse Teams</button>
+        </div>
+        <div id="my-champion-pick"></div>
+      </div>
+
+      <!-- Bracket progress -->
+      <div class="my-pick-section">
+        <div class="section-header">
+          <div class="section-title"><span class="section-icon">📋</span> My Bracket Progress</div>
+          <button class="btn btn-ghost btn-sm" onclick="showTab('bracket')">Open Bracket</button>
+        </div>
+        <div id="my-bracket-summary"></div>
+      </div>
+
+      <!-- Top picks preview -->
+      <div class="card">
+        <div class="section-header">
+          <div class="section-title"><span class="section-icon">📊</span> Most Popular Champion Picks</div>
+        </div>
+        <div id="top-picks-container"></div>
+      </div>
+
+    </div>
+
+    <!-- ====== TEAMS TAB ====== -->
+    <div id="tab-teams" class="tab-panel">
+
+      <div class="section-header" style="margin-bottom:1.5rem">
+        <div>
+          <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:0.25rem">All 48 Teams</h2>
+          <p class="text-muted text-sm">Click any team for full profile, top 3 players, and win probability. Pick your champion from the team page.</p>
+        </div>
+        <span class="badge badge-gold" id="teams-count">48</span> teams
+      </div>
+
+      <div class="teams-toolbar">
+        <div class="search-box">
+          <span class="search-box-icon">🔍</span>
+          <input type="text" id="teams-search-input" placeholder="Search teams…">
+        </div>
+        <select class="sort-select" id="teams-sort">
+          <option value="prob">Sort by: Win probability</option>
+          <option value="rank">Sort by: FIFA rank</option>
+          <option value="name">Sort by: Name A-Z</option>
+        </select>
+      </div>
+
+      <div class="filter-pills" style="margin-bottom:1.5rem">
+        <button class="filter-pill active" data-filter="ALL" onclick="setTeamsFilter('ALL')">All confederations</button>
+        <button class="filter-pill" data-filter="UEFA" onclick="setTeamsFilter('UEFA')">🇪🇺 UEFA</button>
+        <button class="filter-pill" data-filter="CONMEBOL" onclick="setTeamsFilter('CONMEBOL')">🌎 CONMEBOL</button>
+        <button class="filter-pill" data-filter="CONCACAF" onclick="setTeamsFilter('CONCACAF')">🌎 CONCACAF</button>
+        <button class="filter-pill" data-filter="AFC" onclick="setTeamsFilter('AFC')">🌏 AFC</button>
+        <button class="filter-pill" data-filter="CAF" onclick="setTeamsFilter('CAF')">🌍 CAF</button>
+        <button class="filter-pill" data-filter="OFC" onclick="setTeamsFilter('OFC')">🌏 OFC</button>
+      </div>
+
+      <div class="teams-grid" id="teams-grid-container"></div>
+
+    </div>
+
+    <!-- ====== BRACKET TAB ====== -->
+    <div id="tab-bracket" class="tab-panel">
+
+      <div style="margin-bottom:1.5rem">
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:0.25rem">My Bracket</h2>
+        <p class="text-muted text-sm">Fill in your predictions for every stage — from the group stage all the way to the World Cup Final.</p>
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">ℹ️</span>
+        <div>
+          <strong>How it works:</strong> Start with Group Stage — pick who finishes 1st and 2nd in each group. Then fill the knockout rounds in order. Your predictions are saved automatically.
+        </div>
+      </div>
+
+      <!-- Stage tabs -->
+      <div class="stage-tabs" id="stage-tabs" style="margin-bottom:1.5rem"></div>
+
+      <!-- Stage content -->
+      <div id="bracket-stage-content"></div>
+
+    </div>
+
+    <!-- ====== LEADERBOARD TAB ====== -->
+    <div id="tab-leaderboard" class="tab-panel">
+
+      <div class="section-header" style="margin-bottom:1.5rem">
+        <div>
+          <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:0.25rem">
+            Leaderboard
+          </h2>
+          <p class="text-muted text-sm">All colleagues' champion picks — scores will update once the tournament begins.</p>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center">
+          <span class="badge badge-blue"><span id="lb-count">0</span> players</span>
+          <button class="btn btn-secondary btn-sm" onclick="exportData()">⬇ Export</button>
+          <button class="btn btn-secondary btn-sm" onclick="importData()">⬆ Import</button>
+        </div>
+      </div>
+
+      <div class="alert alert-warning">
+        <span class="alert-icon">🏆</span>
+        <div>
+          <strong>Scoring (live after tournament starts):</strong>
+          Champion correct = 20pts · Finalist = 10pts · Semi-finalist = 5pts · QF = 3pts · R16 = 2pts · R32 = 1pt · Group winner = 2pts · Group 2nd = 1pt
+        </div>
+      </div>
+
+      <div class="leaderboard-table">
+        <div class="lb-row lb-header">
+          <div>#</div>
+          <div>Participant</div>
+          <div>Champion Pick</div>
+          <div class="lb-score-col">Score</div>
+          <div>Bracket</div>
+        </div>
+        <div id="leaderboard-container"></div>
+      </div>
+
+      <div style="margin-top:2rem;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:14px">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem">Share predictions with colleagues</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1rem">
+          Export your predictions as a JSON file, then share with a colleague who can import it to see your picks on their leaderboard. Or share this entire app folder via a shared drive.
+        </p>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+          <button class="btn btn-secondary" onclick="exportData()">⬇ Export my predictions</button>
+          <button class="btn btn-secondary" onclick="importData()">⬆ Import colleague's predictions</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main-app -->
+
+<!-- ===================================================
+     TEAM DETAIL MODAL
+     =================================================== -->
+<div class="modal-overlay" id="team-modal-overlay">
+  <div class="modal" id="team-modal">
+
+    <div class="modal-header">
+      <span class="modal-flag" id="modal-flag">🏳️</span>
+      <div class="modal-title-group">
+        <h2 class="modal-title" id="modal-team-name">Team Name</h2>
+        <div class="modal-sub" id="modal-team-sub"></div>
+      </div>
+      <button class="modal-close" onclick="closeTeamModal()">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Description -->
+      <div class="modal-section">
+        <div class="modal-section-title">Team Overview</div>
+        <p class="modal-description" id="modal-description"></p>
+      </div>
+
+      <!-- Win probability -->
+      <div class="modal-section">
+        <div class="modal-section-title">Win Probability</div>
+        <div class="prob-display">
+          <span class="prob-label">World Cup win chance</span>
+          <div class="prob-bar"><div class="prob-bar-fill" id="modal-prob-fill" style="width:0%"></div></div>
+          <span class="prob-value" id="modal-prob-value">0%</span>
+        </div>
+        <div class="prob-context" id="modal-prob-context"></div>
+      </div>
+
+      <!-- Top 3 Players -->
+      <div class="modal-section">
+        <div class="modal-section-title">Top 3 Players to Watch</div>
+        <div class="players-list" id="modal-players"></div>
+      </div>
+
+      <!-- Group info -->
+      <div class="modal-section">
+        <div class="modal-section-title">Group Stage Draw</div>
+        <div id="modal-group"></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="modal-pick-cta">
+        <button class="pick-champion-btn" id="modal-pick-btn" onclick="pickChampionFromModal()">
+          🏆 Pick as Champion
+        </button>
+        <button class="btn btn-ghost" onclick="closeTeamModal()" style="flex-shrink:0">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast-container" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:0.5rem;pointer-events:none;align-items:flex-end"></div>
+
+<!-- Scripts -->
+<script src="data.js"></script>
+<script>
+  // Add team IDs to TEAMS objects for easy reference
+  Object.keys(TEAMS).forEach(id => { TEAMS[id].id = id; });
+</script>
+<script src="app.js"></script>
+
+</body>
+</html>
