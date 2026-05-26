@@ -55,6 +55,8 @@ async function _cloudFetch() {
   return (await r.json()).record?.users ?? [];
 }
 
+let _lastPullFailed = false;
+
 async function cloudPull() {
   if (!CLOUD_ENABLED) return;
   try {
@@ -63,7 +65,7 @@ async function cloudPull() {
     for (const ru of remote) {
       // Migrate remote user predictions if needed
       if (!ru.predictions) ru.predictions = createEmptyPredictions();
-      if (!ru.predictions.third) ru.predictions.third = [];
+      if (!ru.predictions.thirdSlots) ru.predictions.thirdSlots = {};
       const idx = allUsers.findIndex(u => u.id === ru.id);
       if (idx < 0) {
         allUsers.push(ru);
@@ -79,8 +81,17 @@ async function cloudPull() {
       if (loginList) renderExistingUsers();
       if (activeTab) renderTab(activeTab);
     }
-    setSyncBadge('ok');
+    // If we're recovering from a previous failure and a user is logged in,
+    // push their local data to ensure nothing was missed during the outage
+    if (_lastPullFailed && currentUser) {
+      _lastPullFailed = false;
+      cloudPush();
+    } else {
+      _lastPullFailed = false;
+      setSyncBadge('ok');
+    }
   } catch {
+    _lastPullFailed = true;
     setSyncBadge('error');
   }
 }
