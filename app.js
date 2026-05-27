@@ -8,7 +8,7 @@ function flagImg(teamId, size) {
   const code = FLAG_CODES[teamId];
   if (!code) return '';
   const w = size === 'lg' ? 40 : size === 'md' ? 32 : 20;
-  return `<img class="flag-img flag-${size||'sm'}" src="https://flagcdn.com/w${w}/${code}.png" alt="${teamId}" loading="lazy">`;
+  return `<img class="flag-img flag-${size||'sm'}" src="https://flagcdn.com/w${w}/${code}.png" alt="${teamId}">`;
 }
 
 // ============================================================
