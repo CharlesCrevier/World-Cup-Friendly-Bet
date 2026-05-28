@@ -7,8 +7,8 @@ const STORAGE_KEY = 'itcilo_wc2026_v2';
 function flagImg(teamId, size) {
   const code = FLAG_CODES[teamId];
   if (!code) return '';
-  const sz = size === 'lg' ? 'flag-lg' : size === 'md' ? 'flag-md' : 'flag-sm';
-  return `<span class="fi fi-${code} ${sz}" title="${teamId}"></span>`;
+  const sz = size || 'sm';
+  return `<img class="flag flag-${sz}" src="flags/${code}.svg" alt="${teamId}">`;
 }
 
 // ============================================================

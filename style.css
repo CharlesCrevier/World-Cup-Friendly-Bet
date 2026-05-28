@@ -317,11 +317,11 @@ body {
 }
 .btn-icon:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ===== FLAG ICONS (flag-icons library) ===== */
-.fi { border-radius: 2px; flex-shrink: 0; vertical-align: middle; }
-.flag-sm { width: 20px !important; height: 15px !important; }
-.flag-md { width: 32px !important; height: 24px !important; }
-.flag-lg { width: 48px !important; height: 36px !important; }
+/* ===== FLAGS (local SVGs) ===== */
+.flag { display:inline-block; vertical-align:middle; border-radius:2px; flex-shrink:0; }
+.flag-sm { width:20px; height:15px; }
+.flag-md { width:32px; height:24px; }
+.flag-lg { width:48px; height:36px; }
 .flag-img-wrap { display:inline-flex; align-items:center; }
 
 /* ===== SYNC BADGE ===== */
