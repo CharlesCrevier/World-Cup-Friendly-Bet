@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ITCILO ⚽ World Cup 2026 — Friendly Predictions</title>
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
 </head>
 <body>
@@ -242,6 +242,11 @@
         </div>
       </div>
 
+      <div id="lb-sync-bar" style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;padding:0.75rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px">
+        <span style="font-size:0.82rem;color:var(--text-muted);flex:1">Predictions sync automatically every 60 s. Click to pull the latest now.</span>
+        <button class="btn btn-secondary btn-sm lb-refresh-btn">🔄 Sync &amp; Refresh</button>
+      </div>
+
       <div class="leaderboard-table">
         <div class="lb-row lb-header">
           <div>#</div>
@@ -333,12 +338,12 @@
 <div id="toast-container" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:0.5rem;pointer-events:none;align-items:flex-end"></div>
 
 <!-- Scripts -->
-<script src="data.js?v=10"></script>
+<script src="data.js?v=11"></script>
 <script>
   // Add team IDs to TEAMS objects for easy reference
   Object.keys(TEAMS).forEach(id => { TEAMS[id].id = id; });
 </script>
-<script src="app.js?v=10"></script>
+<script src="app.js?v=11"></script>
 
 </body>
 </html>

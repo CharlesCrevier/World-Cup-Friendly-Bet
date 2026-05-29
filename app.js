@@ -35,6 +35,7 @@ function loadStorage() {
 }
 
 function saveStorage(pushCloud = true) {
+  if (pushCloud && currentUser) currentUser.updatedAt = Date.now();
   const data = { users: allUsers, currentUserId: currentUser ? currentUser.id : null };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   if (pushCloud) cloudPush();
@@ -46,6 +47,7 @@ function saveStorage(pushCloud = true) {
 const CLOUD_ENABLED = typeof CLOUD_BIN_ID !== 'undefined' && CLOUD_BIN_ID !== '';
 const CLOUD_BASE    = 'https://api.jsonbin.io/v3/b';
 let   _syncBusy     = false;
+let   _pushQueued   = false;   // push requested while another was in-flight
 
 async function _cloudFetch() {
   const r = await fetch(`${CLOUD_BASE}/${CLOUD_BIN_ID}/latest`, {
@@ -81,10 +83,24 @@ async function cloudPull() {
       if (loginList) renderExistingUsers();
       if (activeTab) renderTab(activeTab);
     }
-    // If we're recovering from a previous failure and a user is logged in,
-    // push their local data to ensure nothing was missed during the outage
+
+    // Decide whether to push local user data:
+    // 1. recovering from a previous pull failure, OR
+    // 2. current user is not in the cloud at all (e.g. their push failed before), OR
+    // 3. local user has a newer updatedAt than what's stored in cloud
+    const inCloud = currentUser ? remote.find(u => u.id === currentUser.id) : null;
+    const localNewer = inCloud
+      ? (currentUser.updatedAt || 0) > (inCloud.updatedAt || 0)
+      : false;
+    const needsPush = currentUser && (!inCloud || localNewer);
+
     if (_lastPullFailed && currentUser) {
       _lastPullFailed = false;
+      cloudPush();
+    } else if (needsPush) {
+      // Local data is missing from cloud or is fresher — push it now
+      _lastPullFailed = false;
+      setSyncBadge('ok');
       cloudPush();
     } else {
       _lastPullFailed = false;
@@ -97,8 +113,10 @@ async function cloudPull() {
 }
 
 async function cloudPush() {
-  if (!CLOUD_ENABLED || _syncBusy) return;
+  if (!CLOUD_ENABLED) return;
+  if (_syncBusy) { _pushQueued = true; return; }
   _syncBusy = true;
+  _pushQueued = false;
   setSyncBadge('syncing');
   try {
     const remote = await _cloudFetch();
@@ -116,8 +134,12 @@ async function cloudPush() {
     setSyncBadge('ok');
   } catch {
     setSyncBadge('error');
+    // Retry in 15 s so transient failures are recovered automatically
+    setTimeout(() => { if (!_syncBusy && CLOUD_ENABLED) cloudPush(); }, 15000);
   } finally {
     _syncBusy = false;
+    // Process any push that arrived while we were busy
+    if (_pushQueued) { _pushQueued = false; setTimeout(cloudPush, 500); }
   }
 }
 
@@ -1131,6 +1153,19 @@ function resolveSlot(slot, picks) {
 // ============================================================
 function renderLeaderboard() {
   const container = document.getElementById('leaderboard-container');
+
+  // Show a sync-now button so anyone can pull the latest picks on demand
+  const syncBar = document.getElementById('lb-sync-bar');
+  if (syncBar && !syncBar.dataset.wired) {
+    syncBar.dataset.wired = '1';
+    syncBar.querySelector('.lb-refresh-btn').addEventListener('click', async () => {
+      syncBar.querySelector('.lb-refresh-btn').textContent = '⟳ Refreshing…';
+      await cloudPull();
+      renderLeaderboard();
+      syncBar.querySelector('.lb-refresh-btn').textContent = '🔄 Sync & Refresh';
+    });
+  }
+
   const sorted = [...allUsers].sort((a, b) => {
     // Sort by: has champion pick first, then by name
     if (a.predictions.champion && !b.predictions.champion) return -1;
